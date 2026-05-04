@@ -1,1 +1,33 @@
-<p>list works!</p>
+@for (tarefa of tarefas; track tarefa.id) {
+  <p-card class="mb-2">
+
+    <div style="display: flex; justify-content: space-between;">
+
+      <div>
+        <h3>{{ tarefa.titulo }}</h3>
+        <p>{{ tarefa.descricao }}</p>
+        <small>{{ tarefa.categoria }} - {{ tarefa.prioridade }}</small>
+      </div>
+
+      <p-checkbox
+        [(ngModel)]="tarefa.concluida"
+        (onChange)="toggle(tarefa)">
+      </p-checkbox>
+
+    </div>
+
+    <div style="margin-top: 10px;">
+      <button
+        pButton
+        severity="danger"
+        (click)="excluir(tarefa.id)">
+        <span pButtonLabel>Excluir</span>
+      </button>
+    </div>
+
+  </p-card>
+}
+
+@if (tarefas.length === 0) {
+  <p>Nenhuma tarefa cadastrada</p>
+}
