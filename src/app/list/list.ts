@@ -8,7 +8,7 @@ import {Tarefa} from "../models/tarefa.model";
 import {CommonModule} from '@angular/common';
 
 @Component({
-  selector: 'app-tarefa-lista',
+  selector: 'app-lista',
   standalone: true,
   imports: [FormsModule, CardModule, ButtonModule, CheckboxModule, CommonModule],
   templateUrl: './list.html'

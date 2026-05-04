@@ -1,1 +1,29 @@
-<p>form works!</p>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 400px;">
+
+  <input
+    pInputText
+    [(ngModel)]="tarefa.titulo"
+    placeholder="Título" />
+
+  <input
+    pInputText
+    [(ngModel)]="tarefa.descricao"
+    placeholder="Descrição" />
+
+  <p-select
+    [options]="categorias"
+    [(ngModel)]="tarefa.categoria"
+    placeholder="Categoria">
+  </p-select>
+
+  <p-select
+    [options]="prioridades"
+    [(ngModel)]="tarefa.prioridade"
+    placeholder="Prioridade">
+  </p-select>
+
+  <button pButton (click)="salvar()">
+    <span pButtonLabel>Salvar</span>
+  </button>
+
+</div>
