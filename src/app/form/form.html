@@ -1,29 +1,47 @@
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 400px;">
+<div class="container">
 
-  <input
-    pInputText
-    [(ngModel)]="tarefa.titulo"
-    placeholder="Título" />
+  <p-card>
 
-  <input
-    pInputText
-    [(ngModel)]="tarefa.descricao"
-    placeholder="Descrição" />
+    <h2>{{ modoEdicao ? 'Editar Tarefa' : 'Nova Tarefa' }}</h2>
 
-  <p-select
-    [options]="categorias"
-    [(ngModel)]="tarefa.categoria"
-    placeholder="Categoria">
-  </p-select>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
 
-  <p-select
-    [options]="prioridades"
-    [(ngModel)]="tarefa.prioridade"
-    placeholder="Prioridade">
-  </p-select>
+      <input
+        pInputText
+        [(ngModel)]="tarefa.titulo"
+        placeholder="Título" />
 
-  <button pButton (click)="salvar()">
-    <span pButtonLabel>Salvar</span>
-  </button>
+      <input
+        pInputText
+        [(ngModel)]="tarefa.descricao"
+        placeholder="Descrição" />
+
+      <p-select
+        [options]="categorias"
+        [(ngModel)]="tarefa.categoria"
+        placeholder="Categoria">
+      </p-select>
+
+      <p-select
+        [options]="prioridades"
+        [(ngModel)]="tarefa.prioridade"
+        placeholder="Prioridade">
+      </p-select>
+
+    </div>
+
+    <div style="margin-top: 20px; display: flex; gap: 10px;">
+
+      <button pButton (click)="salvar()">
+        <span pButtonLabel>{{ modoEdicao ? 'Atualizar' : 'Salvar' }}</span>
+      </button>
+
+      <button pButton severity="secondary" (click)="voltar()">
+        <span pButtonLabel>Cancelar</span>
+      </button>
+
+    </div>
+
+  </p-card>
 
 </div>

@@ -1,19 +1,41 @@
-<div style="display: flex; gap: 12px;">
+<div class="container">
 
-  <p-card header="Total">
-    {{ total }}
-  </p-card>
+  <div class="toolbar">
+    <button pButton (click)="irParaNova()">
+      <span pButtonLabel>Nova Tarefa</span>
+    </button>
 
-  <p-card header="Pendentes">
-    {{ pendentes }}
-  </p-card>
+    <button pButton (click)="irParaLista()">
+      <span pButtonLabel>Ver Tarefas</span>
+    </button>
+  </div>
 
-  <p-card header="Concluídas">
-    {{ concluidas }}
-  </p-card>
+  <div class="grid">
+
+    <p-card class="card" header="Total">
+      <h2>{{ total }}</h2>
+    </p-card>
+
+    <p-card class="card" header="Pendentes">
+      <h2>{{ pendentes }}</h2>
+    </p-card>
+
+    <p-card class="card" header="Concluídas">
+      <h2>{{ concluidas }}</h2>
+    </p-card>
+
+    <p-card class="card" header="Alta">
+      <h2>{{ altas }}</h2>
+    </p-card>
+
+    <p-card class="card" header="Média">
+      <h2>{{ medias }}</h2>
+    </p-card>
+
+    <p-card class="card" header="Baixa">
+      <h2>{{ baixas }}</h2>
+    </p-card>
+
+  </div>
 
 </div>
-
-@if (total === 0) {
-  <p>Nenhuma tarefa cadastrada</p>
-}

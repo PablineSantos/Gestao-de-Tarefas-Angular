@@ -1,4 +1,35 @@
-@for (tarefa of tarefas; track tarefa.id) {
+<div style="margin-bottom: 15px; display: flex; gap: 10px;">
+
+  <button pButton (click)="nova()">
+    <span pButtonLabel>Nova Tarefa</span>
+  </button>
+
+</div>
+<div style="display: flex; gap: 10px; margin-bottom: 10px;">
+
+
+  <input pInputText [(ngModel)]="busca" placeholder="Buscar..." />
+
+  <p-select
+    [options]="categorias"
+    [(ngModel)]="filtroCategoria"
+    placeholder="Categoria">
+  </p-select>
+
+  <p-select
+    [options]="prioridades"
+    [(ngModel)]="filtroPrioridade"
+    placeholder="Prioridade">
+  </p-select>
+
+  <p-select
+    [options]="['concluida','pendente']"
+    [(ngModel)]="filtroStatus"
+    placeholder="Status">
+  </p-select>
+</div>
+
+@for (tarefa of tarefasFiltradas; track tarefa.id){
   <p-card class="mb-2">
 
     <div style="display: flex; justify-content: space-between;">
@@ -11,8 +42,13 @@
 
       <p-checkbox
         [(ngModel)]="tarefa.concluida"
-        (onChange)="toggle(tarefa)">
+        [binary]="true"
+        (onChange)="atualizarStatus(tarefa)">
       </p-checkbox>
+
+      <button pButton (click)="editar(tarefa.id)">
+        <span pButtonLabel>Editar</span>
+      </button>
 
     </div>
 
@@ -24,10 +60,9 @@
         <span pButtonLabel>Excluir</span>
       </button>
     </div>
-
   </p-card>
 }
 
-@if (tarefas.length === 0) {
-  <p>Nenhuma tarefa cadastrada</p>
+@if (tarefasFiltradas.length === 0) {
+  <p>Nenhuma tarefa encontrada</p>
 }
