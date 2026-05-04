@@ -13,7 +13,7 @@ import {CommonModule} from '@angular/common';
   imports: [FormsModule, CardModule, ButtonModule, CheckboxModule, CommonModule],
   templateUrl: './list.html'
 })
-export class TarefaListaComponent implements OnInit {
+export class ListaComponent implements OnInit {
 
   tarefas: Tarefa[] = [];
 
@@ -24,11 +24,11 @@ export class TarefaListaComponent implements OnInit {
     this.tarefas = this.service.listar();
   }
 
-  toggle(tarefa: Tarefa) {
+  toggle(tarefa: Tarefa):void {
     this.service.toggleConclusao(tarefa);
   }
 
-  excluir(id: number) {
+  excluir(id: number):void {
     if (confirm('Deseja excluir?')) {
       this.service.deletar(id);
     }

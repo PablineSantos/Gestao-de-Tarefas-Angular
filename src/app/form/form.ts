@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { TarefaService} from '../services/tarefa.service';
-import { CATEGORIAS, PRIORIDADES } from '../models/tarefa.model';
+import {CATEGORIAS, PRIORIDADES, Tarefa} from '../models/tarefa.model';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {InputTextModule} from 'primeng/inputtext';
@@ -16,16 +16,16 @@ import { SelectModule } from 'primeng/select';
 })
 export class FormComponent {
 
-  tarefa: any = {
+  tarefa: Omit<Tarefa, 'id' | 'dataCriacao' | 'dataConclusao'> =  {
     titulo: '',
     descricao: '',
-    categoria: null,
-    prioridade: null,
+    categoria: '',
+    prioridade: '',
     concluida: false
   };
 
-  categorias = CATEGORIAS;
-  prioridades = PRIORIDADES;
+  readonly categorias = CATEGORIAS;
+  readonly prioridades = PRIORIDADES;
 
   constructor(private service: TarefaService) {}
 
@@ -36,6 +36,13 @@ export class FormComponent {
     }
 
     this.service.criar(this.tarefa);
+    this.tarefa = {
+      titulo: '',
+      descricao: '',
+      categoria: '',
+      prioridade: '',
+      concluida: false
+    };
     alert('Tarefa criada!');
   }
 }

@@ -1,1 +1,19 @@
-<p>dashboard works!</p>
+<div style="display: flex; gap: 12px;">
+
+  <p-card header="Total">
+    {{ total }}
+  </p-card>
+
+  <p-card header="Pendentes">
+    {{ pendentes }}
+  </p-card>
+
+  <p-card header="Concluídas">
+    {{ concluidas }}
+  </p-card>
+
+</div>
+
+@if (total === 0) {
+  <p>Nenhuma tarefa cadastrada</p>
+}

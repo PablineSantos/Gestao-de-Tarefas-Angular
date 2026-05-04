@@ -9,13 +9,18 @@ export class TarefaService {
   private tarefas: Tarefa[] = [];
 
   listar(): Tarefa[] {
-    return this.tarefas;
+    return [...this.tarefas];
   }
 
-  criar(tarefa: Tarefa) {
-    tarefa.id = Date.now();
-    tarefa.dataCriacao = new Date();
-    this.tarefas.push(tarefa);
+  criar(tarefa: Omit<Tarefa, 'id' | 'dataCriacao' | 'dataConclusao'>): void {
+    const novaTarefa: Tarefa = {
+      ...tarefa,
+      id: Date.now(),
+      dataCriacao: new Date(),
+      dataConclusao: undefined
+    };
+
+    this.tarefas.push(novaTarefa);
   }
 
   deletar(id: number) {
@@ -25,5 +30,12 @@ export class TarefaService {
   toggleConclusao(tarefa: Tarefa) {
     tarefa.concluida = !tarefa.concluida;
     tarefa.dataConclusao = tarefa.concluida ? new Date() : undefined;
+  }
+  contarConcluidas(): number {
+    return this.tarefas.filter(t => t.concluida).length;
+  }
+
+  contarPendentes(): number {
+    return this.tarefas.filter(t => !t.concluida).length;
   }
 }
